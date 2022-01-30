@@ -9,4 +9,7 @@ RUN pip install gdbfrontend
 
 EXPOSE 5550
 
-ENTRYPOINT tmux new gdbfrontend --listen="0.0.0.0"
+ENTRYPOINT cd /shared && \
+           tmux new -d 'gdbfrontend --listen="0.0.0.0"; bash' && \
+           echo "Connect to localhost:5550" && \
+           bash
